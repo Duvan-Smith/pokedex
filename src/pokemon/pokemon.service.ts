@@ -26,6 +26,21 @@ export class PokemonService {
     }
   }
 
+  async createMany(createPokemonDtos: CreatePokemonDto[]) {
+    createPokemonDtos = createPokemonDtos.map((dto) => {
+      dto.name.toLocaleLowerCase();
+      return dto;
+    })
+
+    try {
+      const pokemon = await this.pokemonModule.insertMany(createPokemonDtos);
+
+      return pokemon;
+    } catch (error) {
+      this.handleExceptions(error, 'create');
+    }
+  }
+
   async findAll() {
     return await this.pokemonModule.find();
   }
@@ -85,5 +100,9 @@ export class PokemonService {
     console.log(error);
 
     throw new InternalServerErrorException(`Can't ${method} Pokemon - Check server logs`);
+  }
+
+  async removeMany() {
+    await this.pokemonModule.deleteMany({});
   }
 }
