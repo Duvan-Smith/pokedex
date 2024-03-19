@@ -52,5 +52,6 @@ docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
 ```
 
 # Stack usado
-* MongoDB
-* Nest
+* MongoDB - Mongoose
+* Nest Js
+* Docker - DockerCompose
