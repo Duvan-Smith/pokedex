@@ -15,7 +15,7 @@ export class SeedService {
     await this.pokemonService.removeMany();
 
     const data = await this.httpService.get<PokeResponse>(
-      'https://pokeapi.co/api/v2/pokemon?limit=650'
+      'https://pokeapi.co/api/v2/pokemon?limit=1000'
     );
 
     // const insertPromisesArray=[];
