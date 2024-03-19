@@ -13,7 +13,7 @@ import { ConfigModule } from '@nestjs/config';
     MongooseModule.forFeature([{
       name: Pokemon.name,
       schema: PokemonSchema
-    }])
+    }], 'pokemon'),
   ],
   exports: [PokemonService]
 })

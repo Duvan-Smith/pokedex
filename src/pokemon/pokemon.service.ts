@@ -12,7 +12,7 @@ export class PokemonService {
   private defaultLimit : number;
 
   constructor(
-    @InjectModel(Pokemon.name)
+    @InjectModel(Pokemon.name, 'pokemon')
     private readonly pokemonModule: Model<Pokemon>,
     
     private readonly configServices: ConfigService,

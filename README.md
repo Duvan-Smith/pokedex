@@ -38,7 +38,8 @@ http://localhost:3000/api/v2/seed
 # Production Build (Docker-Compose)
 
 1. Crear el archivo ```.env.prod``` => 
-  ```MONGODB=mongodb://mongo-poke:27017/nest-pokemon```
+  ```MONGODBPOKEMON=mongodb://mongo-poke:27017/nest-pokemon```
+  ```MONGODBTIENDA=mongodb://mongo-poke:27017/nest-tienda```
 2. Llenar las variables de entorno de prod
 3. Crear nueva imagen
 ```

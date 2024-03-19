@@ -22,7 +22,15 @@ import { JoiValidationSchema } from './config/joi.validation';
 
     PokemonModule,
 
-    MongooseModule.forRoot(process.env.MONGODB),
+    // MongooseModule.forRoot(process.env.MONGODB),
+
+    MongooseModule.forRoot(process.env.MONGODBPOKEMON, {
+      connectionName: 'pokemon',
+    }),
+
+    MongooseModule.forRoot(process.env.MONGODBTIENDA, {
+      connectionName: 'tienda',
+    }),
 
     CommonModule,
 
