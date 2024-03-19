@@ -16,7 +16,7 @@ npm install
 npm i -g @nestjs/cli
 ```
 
-4. Levantar la DB
+4. Levantar la DB en caso de usar Docker
 ```
 docker-compose up -d
 ```
