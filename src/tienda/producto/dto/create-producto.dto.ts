@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsInt, IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, MinLength, isInt } from "class-validator";
+import { IsBoolean, IsInt, IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, MinLength } from "class-validator";
 import { ObjectId } from "mongoose";
 
 export class CreateProductoDto {
@@ -12,15 +12,6 @@ export class CreateProductoDto {
     @IsNotEmpty()
     @MinLength(1)
     readonly name: string;
-
-    // @ApiProperty({
-    //     example: true,
-    //     description: 'Prodcuto eliminado',
-    //     required: true
-    // })
-    // @IsBoolean()
-    // @IsNotEmpty()
-    // state: boolean;
 
     @ApiProperty({
         example: '2000',
@@ -38,9 +29,6 @@ export class CreateProductoDto {
     @IsNotEmpty()
     @IsMongoId()
     readonly categoria: ObjectId;
-
-    // @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Categoria' }] })
-    // categoria: Categoria[];
 
     @ApiProperty({
         example: 'BBB - Bueno bonito y barato',
