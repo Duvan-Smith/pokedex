@@ -5,7 +5,7 @@ import { Document } from "mongoose";
 @Schema()
 export class Pokemon extends Document {
     @ApiProperty({
-        example: 'Pikachu',
+        example: 'bulbasaur',
         description: 'Pokemon name',
         uniqueItems: true
     })
@@ -27,6 +27,8 @@ export class Pokemon extends Document {
     no: number;
 
     @ApiProperty({
+        example: 'https://pokeapi.co/api/v2/pokemon/1/',
+        description: 'Pokemon url',
         uniqueItems: true
     })
     @Prop({

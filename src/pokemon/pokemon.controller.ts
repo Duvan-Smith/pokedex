@@ -38,11 +38,13 @@ export class PokemonController {
 
   //Se usa term porque las propiedades estan indexadas
   @Get(':term')
+  @ApiResponse({status: 200, description: 'Pokemon was get by id', type: Pokemon })
   findOne(@Param('term') term: string) {
     return this.pokemonService.findOne(term);
   }
 
   @Patch(':term')
+  @ApiResponse({status: 200, description: 'Pokemon was update', type: Pokemon })
   update(@Param('term') term: string, @Body() updatePokemonDto: UpdatePokemonDto) {
     return this.pokemonService.update(term, updatePokemonDto);
   }
