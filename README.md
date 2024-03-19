@@ -35,6 +35,11 @@ npm run start:dev
 http://localhost:3000/api/v2/seed
 ```
 
+9. Swagger
+```
+http://localhost:3000/api
+```
+
 # Production Build (Docker-Compose)
 
 1. Crear el archivo ```.env.prod``` => 
