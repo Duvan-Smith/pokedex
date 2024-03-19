@@ -27,7 +27,7 @@ export class SeedService {
 
       // await this.pokemonService.create({ name, no });
       // insertPromisesArray.push(this.pokemonService.create({ name, no }));
-      pokemonToInsert.push({ name, no });
+      pokemonToInsert.push({ name, no, url });
     })
 
     // await Promise.all(insertPromisesArray);

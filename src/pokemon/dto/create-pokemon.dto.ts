@@ -12,4 +12,9 @@ export class CreatePokemonDto {
     @IsPositive()
     @Min(1)
     no: number;
+
+    @ApiProperty()
+    @IsString()
+    @MinLength(1)
+    url: string;
 }
