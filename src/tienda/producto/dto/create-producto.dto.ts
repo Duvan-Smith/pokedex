@@ -1,7 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsInt, IsMongoId, IsNotEmpty, IsNumber, IsPositive, IsString, MinLength, isInt } from "class-validator";
+import { IsBoolean, IsInt, IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, MinLength, isInt } from "class-validator";
 import { ObjectId } from "mongoose";
-import { Categoria } from "src/tienda/categoria/entities/categoria.entity";
 
 export class CreateProductoDto {
     @ApiProperty({
@@ -12,16 +11,16 @@ export class CreateProductoDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(1)
-    name: string;
+    readonly name: string;
 
-    @ApiProperty({
-        example: true,
-        description: 'Prodcuto eliminado',
-        required: true
-    })
-    @IsBoolean()
-    @IsNotEmpty()
-    state: boolean;
+    // @ApiProperty({
+    //     example: true,
+    //     description: 'Prodcuto eliminado',
+    //     required: true
+    // })
+    // @IsBoolean()
+    // @IsNotEmpty()
+    // state: boolean;
 
     @ApiProperty({
         example: '2000',
@@ -30,7 +29,7 @@ export class CreateProductoDto {
     @IsNumber()
     @IsPositive()
     @IsInt()
-    cost: number
+    readonly cost: number
 
     @ApiProperty({
         example: '65f8fcd6a3f5be6e86004fb5',
@@ -38,16 +37,18 @@ export class CreateProductoDto {
     })
     @IsNotEmpty()
     @IsMongoId()
-    categoria: ObjectId;
+    readonly categoria: ObjectId;
 
     // @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Categoria' }] })
     // categoria: Categoria[];
 
     @ApiProperty({
         example: 'BBB - Bueno bonito y barato',
-        description: 'Dedscripcion de producto'
+        description: 'Dedscripcion de producto',
+        required: false
     })
-    description?: string;
+    @IsOptional()
+    readonly description?: string;
 
     @ApiProperty({
         example: true,
@@ -55,11 +56,13 @@ export class CreateProductoDto {
     })
     @IsBoolean()
     @IsNotEmpty()
-    available: boolean;
+    readonly available: boolean;
 
     @ApiProperty({
         example: 'https://rutaimagen/jpg',
-        description: 'Imagen de producto'
+        description: 'Imagen de producto',
+        required: false
     })
-    img?: string;
+    @IsOptional()
+    readonly img?: string;
 }

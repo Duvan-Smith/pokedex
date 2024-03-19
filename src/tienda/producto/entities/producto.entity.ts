@@ -43,7 +43,11 @@ export class Producto extends Document {
 
     @ApiProperty({
         example: 'BBB - Bueno bonito y barato',
-        description: 'Dedscripcion de producto'
+        description: 'Dedscripcion de producto',
+        required: false
+    })
+    @Prop({
+        required: false,
     })
     description?: string;
 
@@ -59,9 +63,18 @@ export class Producto extends Document {
 
     @ApiProperty({
         example: 'https://rutaimagen/jpg',
-        description: 'Imagen de producto'
+        description: 'Imagen de producto',
+        required: false
+    })
+    @Prop({
+        required: false,
     })
     img?: string;
 }
 
 export const ProductoSchema = SchemaFactory.createForClass(Producto);
+
+ProductoSchema.methods.toJSON = function () {
+    const { __v, state, ...data } = this.toObject();
+    return data;
+}

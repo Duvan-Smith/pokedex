@@ -14,10 +14,16 @@ export class ProductoService {
   ) { }
 
   async create(createProductoDto: CreateProductoDto) {
-    createProductoDto.name = createProductoDto.name.toLocaleLowerCase();
+    const { name, ...productoDto } = createProductoDto;
+
+    const data = {
+      name: name.toLocaleLowerCase(),
+      state: true,
+      ...productoDto
+    }
 
     try {
-      const producto = await this.productoModule.create(createProductoDto);
+      const producto = await this.productoModule.create(data);
 
       return producto;
     } catch (error) {
@@ -32,15 +38,14 @@ export class ProductoService {
       .skip(offset)
       .sort({
         no: 1
-      })
-      .select('-__v');
+      });
   }
 
   async findOne(id: string) {
     let producto: Producto;
 
     if (!producto && isValidObjectId(id))
-      producto = await this.productoModule.findById(id).select('-__v').populate('categoria', 'name');
+      producto = await this.productoModule.findById(id).populate('categoria', 'name');
 
     if (!producto)
       throw new NotFoundException(`Producto with id, namo or no "${id}" not found`);
@@ -51,15 +56,23 @@ export class ProductoService {
   async update(id: string, updateProductoDto: UpdateProductoDto) {
     const producto = await this.findOne(id);
 
-    if (updateProductoDto.name)
-      updateProductoDto.name = updateProductoDto.name.toLocaleLowerCase();
+    const { name, ...productoDto } = updateProductoDto;
+    let data: any;
+
+    if (name) {
+      data = {
+        name: name.toLocaleLowerCase(),
+        state: true,
+        ...productoDto
+      }
+    }
 
     try {
-      await producto.updateOne(updateProductoDto, { new: true });
+      await producto.updateOne(data, { new: true });
 
       return {
         ...producto.toJSON(),
-        ...updateProductoDto
+        ...data
       };
     } catch (error) {
       this.handleExceptions(error, 'update');
